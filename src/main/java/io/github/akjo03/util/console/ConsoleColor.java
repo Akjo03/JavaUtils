@@ -58,4 +58,12 @@ public enum ConsoleColor {
 	public String colorize(String text, boolean bold) {
 		return getCode(bold) + text + "\033[0m";
 	}
+
+	/**
+	 * @return A String representation of this ConsoleColor
+	 */
+	@Override
+	public String toString() {
+		return "ConsoleColor{" + "code='" + code + '\'' + '}';
+	}
 }

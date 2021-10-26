@@ -119,4 +119,26 @@ public class ConsoleColorTest {
 				"\033[1;97mTest\033[0m"
 		}, Arrays.stream(ConsoleColor.values()).map(consoleColor -> consoleColor.colorize("Test", true)).toArray());
 	}
+
+	@Test
+	public void checkToString() {
+		assertArrayEquals(new String[] {
+				"ConsoleColor{code='\033[%c;30m'}",
+				"ConsoleColor{code='\033[%c;31m'}",
+				"ConsoleColor{code='\033[%c;32m'}",
+				"ConsoleColor{code='\033[%c;33m'}",
+				"ConsoleColor{code='\033[%c;34m'}",
+				"ConsoleColor{code='\033[%c;35m'}",
+				"ConsoleColor{code='\033[%c;36m'}",
+				"ConsoleColor{code='\033[%c;37m'}",
+				"ConsoleColor{code='\033[%c;90m'}",
+				"ConsoleColor{code='\033[%c;91m'}",
+				"ConsoleColor{code='\033[%c;92m'}",
+				"ConsoleColor{code='\033[%c;93m'}",
+				"ConsoleColor{code='\033[%c;94m'}",
+				"ConsoleColor{code='\033[%c;95m'}",
+				"ConsoleColor{code='\033[%c;96m'}",
+				"ConsoleColor{code='\033[%c;97m'}"
+		}, Arrays.stream(ConsoleColor.values()).map(ConsoleColor::toString).toArray());
+	}
 }

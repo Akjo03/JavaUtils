@@ -38,7 +38,7 @@ public class ConsoleColorTest {
 				"PURPLE_BRIGHT",
 				"CYAN_BRIGHT",
 				"WHITE_BRIGHT"
-		}, Arrays.stream(ConsoleColor.values()).map(Enum::name).toArray(String[]::new), "Enum ConsoleColor has invalid entries or is in an invalid order!");
+		}, Arrays.stream(ConsoleColor.values()).map(Enum::name).toArray(), "Enum ConsoleColor has invalid entries or is in an invalid order!");
 		assertArrayEquals(new String[] {
 				"\033[0;30m", // BLACK
 				"\033[0;31m", // RED

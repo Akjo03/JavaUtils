@@ -1,1 +1,6 @@
 doc/
+.gitignore
+.tokeignore
+LICENSE
+pom.xml
+README.md

@@ -1,4 +1,7 @@
+.idea/
 doc/
+target/
+.gitattributes
 .gitignore
 .tokeignore
 LICENSE

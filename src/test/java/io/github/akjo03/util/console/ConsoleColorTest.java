@@ -120,6 +120,9 @@ public class ConsoleColorTest {
 		}, Arrays.stream(ConsoleColor.values()).map(consoleColor -> consoleColor.colorize("Test", true)).toArray());
 	}
 
+	/**
+	 * Checks if the {@link ConsoleColor#toString} converts the ConsoleColor into the correct string.
+	 */
 	@Test
 	public void checkToString() {
 		assertArrayEquals(new String[] {

@@ -121,7 +121,7 @@ public class ConsoleColorTest {
 	}
 
 	/**
-	 * Checks if the {@link ConsoleColor#toString} converts the ConsoleColor into the correct string.
+	 * Checks if the {@link ConsoleColor#toString()} returns valid String representation of the ConsoleColor.
 	 */
 	@Test
 	public void checkToString() {

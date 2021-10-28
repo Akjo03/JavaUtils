@@ -11,7 +11,7 @@ import java.nio.file.Paths;
  * @version 0.1.0
  */
 @SuppressWarnings("unused")
-public class ProjectDirectory {
+public final class ProjectDirectory {
 	private ProjectDirectory() {
 		throw new UnsupportedOperationException("ProjectDirectory class cannot be instantiated");
 	}

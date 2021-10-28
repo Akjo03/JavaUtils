@@ -1,4 +1,4 @@
-package io.github.akjo03.util.throwables;
+package io.github.akjo03.util;
 
 @SuppressWarnings("unused")
 public final class ThrowableCompare {

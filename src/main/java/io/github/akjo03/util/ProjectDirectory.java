@@ -1,4 +1,4 @@
-package io.github.akjo03.util.project;
+package io.github.akjo03.util;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

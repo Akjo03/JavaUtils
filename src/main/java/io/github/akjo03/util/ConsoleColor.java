@@ -1,4 +1,4 @@
-package io.github.akjo03.util.console;
+package io.github.akjo03.util;
 
 /**
  * This class can be used to colorize text in the console or to get color escape codes

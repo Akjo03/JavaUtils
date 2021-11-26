@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.akjo03.util.console"},{"l":"io.github.akjo03.util.project"}];updateSearchResults();

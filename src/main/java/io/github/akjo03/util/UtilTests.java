@@ -1,12 +1,12 @@
 package io.github.akjo03.util;
 
-import io.github.akjo03.util.math.Length;
-import io.github.akjo03.util.math.units.LengthUnit;
+import io.github.akjo03.util.logging.Logger;
+import io.github.akjo03.util.logging.LoggerManager;
 
 public class UtilTests {
+	private static final Logger LOGGER = LoggerManager.getLogger(UtilTests.class);
+
 	public static void main(String[] args) {
-		System.out.println(new Length(3.1, LengthUnit.METER).convert(LengthUnit.FEET).convert(LengthUnit.CENTIMETER).compareTo(new Length(3.0, LengthUnit.METER)));
-		System.out.println(new Length(3.1, LengthUnit.METER).convert(LengthUnit.FEET).convert(LengthUnit.CENTIMETER).compareTo(new Length(3.1, LengthUnit.METER)));
-		System.out.println(new Length(3.1, LengthUnit.METER).convert(LengthUnit.FEET).convert(LengthUnit.CENTIMETER).compareTo(new Length(3.2, LengthUnit.METER)));
+
 	}
 }

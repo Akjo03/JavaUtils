@@ -4,48 +4,97 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * Defines a range between two {@link Number Numbers}. Both numbers need to be {@link Comparable}.
+ * @param <T> The type of the numbers.
+ *
+ * @author Lukas Freckmann (Akjo03)
+ * @since 2021-11-18
+ * @version 0.1.0
+ */
+@SuppressWarnings("ClassCanBeRecord")
 public class Range<T extends Number & Comparable<T>> {
-	protected final T low;
-	protected final T high;
+	/**
+	 * The minimum value of this range
+	 */
+	@NotNull protected final T min;
+	/**
+	 * The maximum value of this range
+	 */
+	@NotNull protected final T max;
 
-	public Range(@NotNull("Cannot create Range with null value!") T low,
-	             @NotNull("Cannot create Range with null value!") T high) throws IllegalArgumentException {
-		this.low = getActualLow(low, high);
-		this.high = getActualHigh(low, high);
+	/**
+	 * Creates a new Range with the specified minimum and maximum number.
+	 * @param min The minimum number of the range.
+	 * @param max The maximum number of the range.
+	 * @implNote Both numbers need to be {@link Comparable}.
+	 * @implSpec The actual minimum and maximum number will be calculated.
+	 */
+	public Range(@NotNull T min, @NotNull T max) {
+		this.min = calculateMin(min, max);
+		this.max = calculateMax(min, max);
 	}
 
-	public boolean contains(@NotNull("Cannot check if range contains null!") T number) {
-		boolean lowerCheck = number.compareTo(low) < 0;
-		boolean higherCheck = number.compareTo(high) > 0;
+	/**
+	 * Checks if the specified number is inside this range.
+	 * @param number The number to check.
+	 * @return {@code true} if the number is inside this range, {@code false} otherwise.
+	 */
+	public boolean contains(@NotNull T number) {
+		boolean lowerCheck = number.compareTo(min) <= -1;
+		boolean higherCheck = number.compareTo(max) >= 1;
 
 		return !lowerCheck && !higherCheck;
 	}
 
-	private T getActualLow(T low, T high) {
-		return low.compareTo(high) > 0 ? high : low;
+	/**
+	 * Calculates the minimum number of the range.
+	 * @param min The minimum number of the range.
+	 * @param max The maximum number of the range.
+	 * @return The actual minimum number of the range.
+	 */
+	private @NotNull T calculateMin(@NotNull T min, @NotNull T max) {
+		return min.compareTo(max) <= -1 ? min : max;
 	}
 
-	private T getActualHigh(T low, T high) {
-		return low.compareTo(high) < 0 ? high : low;
+	/**
+     * Calculates the maximum number of the range.
+     * @param min The minimum number of the range.
+     * @param max The maximum number of the range.
+     * @return The actual maximum number of the range.
+     */
+	private @NotNull T calculateMax(@NotNull T min, @NotNull T max) {
+		return max.compareTo(min) >= 1 ? max : min;
 	}
 
+	/**
+	 * @return A string representation of this range.
+	 */
 	@Override
 	public String toString() {
-		return "Range{" + "low=" + low + ", high=" + high + '}';
+		return "Range{" + "min=" + min + ", max=" + max + '}';
 	}
 
+	/**
+	 * Compares the given object with this range to see if they're equal.
+	 * @param o The object to compare this Range to.
+	 * @return {@code true} if the given object is a Range and both ranges are equal, {@code false} otherwise.
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Range<?> other = (Range<?>) o;
-		return low == other.low && high == other.high;
+		Range<?> range = (Range<?>) o;
+		return Objects.equals(min, range.min) && Objects.equals(max, range.max);
 	}
 
+	/**
+	 * @return The hash code of this range.
+	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(low, high);
+		return Objects.hash(min, max);
 	}
 }

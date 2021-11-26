@@ -7,9 +7,9 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>LoggingSystem</name>
+    <name>Utilities</name>
     <description>Utility classes used by all of my java projects!</description>
-    <url>https://akjo03.github.io/logging</url>
+    <url>https://akjo03.github.io/util</url>
     <inceptionYear>2021</inceptionYear>
 
     <licenses>
@@ -48,14 +48,30 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <!--suppress MavenPackageUpdate -->
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>22.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.akjo03.logging</groupId>
-            <artifactId>LoggingSystem</artifactId>
-            <version>0.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -106,6 +122,33 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <reportOutputDirectory>${project.basedir}/doc</reportOutputDirectory>
+                    <stylesheetfile>javadoc-stylesheet.css</stylesheetfile>
+                    <tags>
+                        <tag>
+                            <name>apiNote</name>
+                            <placement>a</placement>
+                            <head>API Notes:</head>
+                        </tag>
+                        <tag>
+                            <name>implSpec</name>
+                            <placement>a</placement>
+                            <head>Implementation Specification:</head>
+                        </tag>
+                        <tag>
+                            <name>implNote</name>
+                            <placement>a</placement>
+                            <head>Implementation Note:</head>
+                        </tag>
+                    </tags>
+                    <nohelp/>
+                </configuration>
             </plugin>
         </plugins>
     </build>

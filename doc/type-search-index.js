@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"io.github.akjo03.util.console","l":"ConsoleColor"},{"p":"io.github.akjo03.util.console","l":"ConsoleColorTest"},{"p":"io.github.akjo03.util.project","l":"ProjectDirectory"}];updateSearchResults();

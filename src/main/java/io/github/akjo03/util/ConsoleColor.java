@@ -1,5 +1,8 @@
 package io.github.akjo03.util;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class can be used to colorize text in the console or to get color escape codes
  *
@@ -45,7 +48,8 @@ public enum ConsoleColor {
 	 * @param bold If the code should be used for bold text
 	 * @return The ANSI escape code
 	 */
-	public String getCode(boolean bold) {
+	@Contract(pure = true)
+	public @NotNull String getCode(boolean bold) {
 		return code.replace("%c", bold ? "1" : "0");
 	}
 
@@ -55,15 +59,17 @@ public enum ConsoleColor {
 	 * @param bold If the text should be bold
 	 * @return The colorized text as a string to be outputted to the console
 	 */
-	public String colorize(String text, boolean bold) {
+	@Contract(pure = true)
+	public @NotNull String colorize(String text, boolean bold) {
 		return getCode(bold) + text + "\033[0m";
 	}
 
 	/**
 	 * @return A String representation of this ConsoleColor
 	 */
+	@Contract(pure = true)
 	@Override
-	public String toString() {
+	public @NotNull String toString() {
 		return "ConsoleColor{" + "code='" + code + '\'' + '}';
 	}
 }

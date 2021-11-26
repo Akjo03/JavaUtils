@@ -178,3 +178,6 @@ $RECYCLE.BIN/
 
 # Akjo Projects Log Files
 logs/
+
+# Others
+.factorypath

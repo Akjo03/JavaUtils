@@ -1,10 +1,8 @@
 package io.github.akjo03.util.math.unit.base;
 
 import io.github.akjo03.util.math.unit.Quantity;
-import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * A base quantity is a number with a base unit.

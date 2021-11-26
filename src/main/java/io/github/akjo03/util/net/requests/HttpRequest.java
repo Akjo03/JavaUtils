@@ -349,9 +349,7 @@ public class HttpRequest implements Buildable {
 	 */
 	private @NotNull Map<String, String> headersToMap(@NotNull HttpHeaders headers) {
 		Map<String, String> resultMap = new HashMap<>();
-		headers.map().forEach((key, values) -> {
-			resultMap.put(key, values.get(0));
-		});
+		headers.map().forEach((key, values) -> resultMap.put(key, values.get(0)));
 		return resultMap;
 	}
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -106,6 +107,143 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	}
 
 	/**
+	 * Adds the given quantity to this quantity.
+	 * @param quantity The quantity to add.
+	 * @return This quantity with the given quantity added.
+	 */
+	public Quantity<T> add(@NotNull Quantity<T> quantity) {
+		this.value = this.value.add(quantity.convertTo(this.unit).getValue());
+		return this;
+	}
+
+	/**
+	 * Adds the given value to this quantity.
+	 * @param value The value to add.
+	 * @return This quantity with the given value added.
+	 */
+	public Quantity<T> add(@NotNull BigDecimal value) {
+		this.value = this.value.add(value);
+		return this;
+	}
+
+	/**
+	 * Subtracts the given quantity from this quantity.
+	 * @param quantity The quantity to subtract.
+	 * @return This quantity with the given quantity subtracted.
+	 */
+	public Quantity<T> subtract(@NotNull Quantity<T> quantity) {
+		this.value = this.value.subtract(quantity.convertTo(this.unit).getValue());
+		return this;
+	}
+
+	/**
+	 * Subtracts the given value from this quantity.
+	 * @param value The value to subtract.
+	 * @return This quantity with the given value subtracted.
+	 */
+	public Quantity<T> subtract(@NotNull BigDecimal value) {
+		this.value = this.value.subtract(value);
+		return this;
+	}
+
+	/**
+	 * Multiplies this quantity by the given quantity.
+	 * @param quantity The quantity to multiply by.
+	 * @return This quantity with the given quantity multiplied by.
+	 */
+	public Quantity<T> multiply(@NotNull Quantity<T> quantity) {
+		this.value = this.value.multiply(quantity.convertTo(this.unit).getValue());
+		return this;
+	}
+
+	/**
+	 * Multiplies this quantity by the given value.
+	 * @param value The value to multiply by.
+	 * @return This quantity with the given value multiplied by.
+	 */
+	public Quantity<T> multiply(@NotNull BigDecimal value) {
+		this.value = this.value.multiply(value);
+		return this;
+	}
+
+	/**
+	 * Divides this quantity by the given quantity.
+	 * @param quantity The quantity to divide by.
+	 * @return This quantity with the given quantity divided by.
+	 */
+	public Quantity<T> divide(@NotNull Quantity<T> quantity) {
+		this.value = this.value.divide(quantity.convertTo(this.unit).getValue(), 20, RoundingMode.HALF_UP);
+		return this;
+	}
+
+	/**
+	 * Divides this quantity by the given value.
+	 * @param value The value to divide by.
+	 * @return This quantity with the given value divided by.
+	 */
+	public Quantity<T> divide(@NotNull BigDecimal value) {
+		this.value = this.value.divide(value, 20, RoundingMode.HALF_UP);
+		return this;
+	}
+
+	/**
+	 * Negates this quantity.
+	 * @return This quantity with the value negated.
+	 */
+	public Quantity<T> negate() {
+		this.value = this.value.negate();
+		return this;
+	}
+
+	/**
+	 * @return The absolute value of this quantity.
+	 */
+	public Quantity<T> abs() {
+		this.value = this.value.abs();
+		return this;
+	}
+
+	/**
+	 * Raises this quantity to the given power.
+	 * @param n The power to raise to.
+	 * @return This quantity with the value raised to the given power.
+	 */
+	public Quantity<T> pow(int n) {
+		this.value = this.value.pow(n);
+		return this;
+	}
+
+	/**
+	 * Takes the square root of this quantity.
+	 * @return This quantity with the square root of the value.
+	 */
+	public Quantity<T> sqrt() {
+		this.value = this.value.sqrt(new MathContext(50, RoundingMode.HALF_UP));
+		return this;
+	}
+
+	/**
+	 * Rounds this quantity to the given number of decimal places.
+	 * @param scale The number of decimal places to round to.
+	 * @return This quantity with the value rounded to the given number of decimal places.
+	 */
+	public Quantity<T> round(int scale) {
+		this.value = this.value.setScale(scale, RoundingMode.HALF_UP);
+		return this;
+	}
+
+	/**
+	 * Rounds this quantity to the given number of decimal places.
+	 * @param scale The number of decimal places to round to.
+	 * @param roundingMode The rounding mode to use.
+	 * @return This quantity with the value rounded to the given number of decimal places.
+	 */
+	public Quantity<T> round(int scale, RoundingMode roundingMode) {
+		this.value = this.value.setScale(scale, roundingMode);
+		return this;
+	}
+
+	/**
 	 * @return A string representation of this unit.
 	 */
 	@Override
@@ -130,6 +268,10 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 		}
 	}
 
+	/**
+	 * @param locale The locale to use when creating the string.
+	 * @return A localized string representation of this unit.
+	 */
 	public String toStringLocalizedWithAbbreviation(Locale locale) {
 		String abbreviation = this.unit.getLocalizedAbbreviation(locale);
 

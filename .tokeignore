@@ -1,5 +1,6 @@
 .idea/
 doc/
+src/main/javadoc/
 target/
 .gitattributes
 .gitignore

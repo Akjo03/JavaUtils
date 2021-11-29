@@ -25,4 +25,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 * **Lukas Freckmann** - *Initial work* - [Akjo03](https://github.com/Akjo03)
 
-See also the list of [contributors](https://github.com/Akjo03/PROJECT_NAME/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Akjo03/JavaUtils/contributors) who participated in this project.

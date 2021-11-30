@@ -8,7 +8,9 @@ import java.math.BigDecimal;
 import java.util.Locale;
 
 /**
- * TODO Add documentation for class UnitDimensionContainer
+ * A container for a part of a unit dimension.
+ * Contains a unit and the operator to the next UnitDimensionContainer inside the UnitDimension.
+ * The operator can also be null if this is the last UnitDimensionContainer.
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-25

@@ -7,6 +7,8 @@ import io.github.akjo03.util.math.Range;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
+
 /**
  * Utility class for checking arguments
  *
@@ -112,6 +114,24 @@ public final class ArgumentChecks {
 	public static <T> @NotNull T requireArgumentNotEquals(@NotNull T arg, Object obj, String message) {
 		if (arg.equals(obj)) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to not be equal to " + obj + "!");
+			LOGGER.log(message, LoggingLevel.ERROR, iae);
+			throw iae;
+		}
+		return arg;
+	}
+
+	/**
+	 * Requires the argument to be inside of the given {@link Collection}. If the argument is not inside of the given {@link Collection}, an {@link IllegalArgumentException} with the specified message is thrown. The type is inferred from the argument.
+	 * @param arg The argument that has to be inside of the given {@link Collection}
+	 * @param list The {@link Collection} that the argument has to be inside of
+	 * @param message The message of the IllegalArgumentException if the argument is not inside of the given {@link Collection}
+	 * @param <T> The inferred type of the argument
+	 * @return The argument back
+	 */
+	@Contract("_, _, _ -> param1")
+	public static <T> @NotNull T requireArgumentInList(@NotNull T arg, @NotNull Collection<?> list, String message) {
+		if (!list.contains(arg)) {
+			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be in list!");
 			LOGGER.log(message, LoggingLevel.ERROR, iae);
 			throw iae;
 		}

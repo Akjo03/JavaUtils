@@ -129,9 +129,27 @@ public final class ArgumentChecks {
 	 * @return The argument back
 	 */
 	@Contract("_, _, _ -> param1")
-	public static <T> @NotNull T requireArgumentInList(@NotNull T arg, @NotNull Collection<?> list, String message) {
+	public static <T> @NotNull T requireArgumentInCollection(@NotNull T arg, @NotNull Collection<?> list, String message) {
 		if (!list.contains(arg)) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be in list!");
+			LOGGER.log(message, LoggingLevel.ERROR, iae);
+			throw iae;
+		}
+		return arg;
+	}
+
+	/**
+	 * Requires the argument to be not inside of the given {@link Collection}. If the argument is inside of the given {@link Collection}, an {@link IllegalArgumentException} with the specified message is thrown. The type is inferred from the argument.
+	 * @param arg The argument that has to be not inside of the given {@link Collection}
+	 * @param list The {@link Collection} that the argument has to be not inside of
+	 * @param message The message of the IllegalArgumentException if the argument is inside of the given {@link Collection}
+	 * @param <T> The inferred type of the argument
+	 * @return The argument back
+	 */
+	@Contract("_, _, _ -> param1")
+	public static <T> @NotNull T requireArgumentNotInCollection(@NotNull T arg, @NotNull Collection<?> list, String message) {
+		if (list.contains(arg)) {
+			IllegalArgumentException iae = new IllegalArgumentException("Argument required to NOT be in list!");
 			LOGGER.log(message, LoggingLevel.ERROR, iae);
 			throw iae;
 		}

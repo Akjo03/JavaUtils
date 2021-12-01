@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.akjo03.util</groupId>
-    <artifactId>Util</artifactId>
+    <artifactId>utils</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
@@ -45,6 +45,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Akjo03 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/akjo03/javautils</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>

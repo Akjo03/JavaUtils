@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @since 2021-11-21
  * @version 0.1.0
  */
-public abstract class BaseQuantity<T extends BaseUnit<T>> extends Quantity<T> {
+public abstract class BaseQuantity<T extends BaseUnit<T>> extends Quantity<T> implements Comparable<Quantity<T>> {
 	/**
 	 * Creates a new base quantity with the given value and unit.
 	 * @param value The value of the base quantity.

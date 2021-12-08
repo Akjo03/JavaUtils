@@ -1,5 +1,6 @@
 package io.github.akjo03.util.math;
 
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @since 2021-11-18
  * @version 0.1.0
  */
-@SuppressWarnings("ClassCanBeRecord")
+@Getter
 public class Range<T extends Number & Comparable<T>> {
 	/**
 	 * The minimum value of this range

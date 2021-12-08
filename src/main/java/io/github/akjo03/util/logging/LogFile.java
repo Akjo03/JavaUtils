@@ -81,6 +81,16 @@ public class LogFile {
 		}
 	}
 
+	@SuppressWarnings("unused")
+	public void removeLogger(Logger logger) {
+		if (loggers.stream().noneMatch(loggerP -> loggerP.getClazz().equals(logger.getClazz()))) {
+			new LogEntry(LogFile.class, new LogMessage("Cannot remove Logger \"" + logger.getName() + "\" from log file, because it is not added!", LoggingLevel.ERROR), true).print();
+		} else {
+			loggers.remove(logger);
+			logger.removeLogFile(this);
+		}
+	}
+
 	/**
 	 * Adds a new {@link LogEntry} to this log file.<br /><br />
 	 * The {@link Logger} that is used with this LogEntry should be added before logging an entry!<br /><br />

@@ -168,6 +168,10 @@ public final class Logger {
 		logFiles.add(logFile);
 	}
 
+	void removeLogFile(LogFile logFile) {
+		logFiles.remove(logFile);
+	}
+
 	/**
 	 * Sets the minimum logging level to be logged.
 	 * @param minimumLoggingLevel The minimum logging level to be logged

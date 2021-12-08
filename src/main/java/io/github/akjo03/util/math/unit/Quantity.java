@@ -20,6 +20,7 @@ import java.util.Objects;
  * @since 2021-11-21
  * @version 0.1.0
  */
+@SuppressWarnings("unused")
 public abstract class Quantity<T extends Unit<T>> extends Number implements Comparable<Quantity<T>> {
 	/**
 	 * The value of this quantity.

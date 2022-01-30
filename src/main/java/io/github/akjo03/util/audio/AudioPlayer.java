@@ -9,6 +9,8 @@ import java.io.IOException;
 
 @SuppressWarnings("unused")
 public final class AudioPlayer {
+	private AudioPlayer() {}
+
 	private static final int BUFFER_SIZE = 128000;
 
 	public static void play(byte[] audio) throws UnsupportedAudioFileException, IOException, LineUnavailableException {

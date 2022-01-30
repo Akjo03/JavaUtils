@@ -8,11 +8,13 @@ public abstract class QuantityRange<T extends Unit<T>> extends Range<Quantity<T>
 		super(min, max);
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	@Override
 	public @NotNull Quantity<T> getMin() {
 		return super.getMin();
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	@Override
 	public @NotNull Quantity<T> getMax() {
 		return super.getMax();

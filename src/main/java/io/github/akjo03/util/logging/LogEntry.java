@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-20
- * @version 0.1.0
+ * @version 1.0.0
  */
 @SuppressWarnings({"unused", "ClassCanBeRecord"})
 public class LogEntry {

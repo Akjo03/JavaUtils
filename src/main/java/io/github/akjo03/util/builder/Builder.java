@@ -7,7 +7,7 @@ package io.github.akjo03.util.builder;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-10-28
- * @version 0.1.0
+ * @version 1.0.0
  */
 @SuppressWarnings("unused")
 public interface Builder<T extends Buildable> {

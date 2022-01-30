@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-18
- * @version 0.1.0
+ * @version 1.0.0
  */
 @Getter
 public class Range<T extends Number & Comparable<T>> {

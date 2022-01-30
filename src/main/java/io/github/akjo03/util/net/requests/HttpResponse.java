@@ -2,6 +2,7 @@ package io.github.akjo03.util.net.requests;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.akjo03.util.json.JsonParsable;
 import lombok.Getter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -21,9 +22,9 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-05
- * @version 0.1.0
+ * @version 1.0.0
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ClassCanBeRecord"})
 public class HttpResponse {
 	/**
 	 * The status code of this response.

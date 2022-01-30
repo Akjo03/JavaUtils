@@ -5,6 +5,8 @@ import lombok.Getter;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-10-25
- * @version 0.1.0
+ * @version 1.0.0
  */
 @SuppressWarnings("unused")
 public final class Logger {
@@ -125,6 +127,82 @@ public final class Logger {
 	}
 
 	/**
+	 * Logs the specified message with the specified level of importance
+	 * @param message The message to log
+	 * @param level The level of importance of the message
+	 */
+	public void log(Object message, LoggingLevel level) {
+		log(new LogMessage(message, level), defaultWriteInstantly);
+	}
+
+	/**
+	 * Logs the specified message with the specified level of importance
+	 * @param message The message to log
+	 * @param level The level of importance of the message
+	 * @param throwable The cause of the message
+	 */
+	public void log(Object message, LoggingLevel level, Throwable throwable) {
+		log(new LogMessage(message, level, throwable), defaultWriteInstantly);
+	}
+
+	/**
+	 * Logs the specified message with the specified level of importance
+	 * @param message The message to log
+	 * @param level The level of importance of the message
+	 * @param writeInstantly If the message should be written to all log files immediately. See {@link Logger#defaultWriteInstantly} for default value.
+	 */
+	public void log(Object message, LoggingLevel level, boolean writeInstantly) {
+		log(new LogMessage(message, level), writeInstantly);
+	}
+
+	/**
+	 * Logs the specified message with the specified level of importance
+	 * @param message The message to log
+	 * @param level The level of importance of the message
+	 * @param throwable The cause of the message
+	 * @param writeInstantly If the message should be written to all log files immediately. See {@link Logger#defaultWriteInstantly} for default value.
+	 */
+	public void log(Object message, LoggingLevel level, Throwable throwable, boolean writeInstantly) {
+		log(new LogMessage(message, level, throwable), writeInstantly);
+	}
+
+	/**
+	 * Logs the specified exception.
+	 * @param exception The exception to log
+	 */
+	public void log(Exception exception) {
+		log(new LogMessage("Exception occurred!", LoggingLevel.ERROR, exception), defaultWriteInstantly);
+	}
+
+	/**
+	 * Logs the specified exception.
+	 * @param exception The exception to log
+	 * @param writeInstantly If the message should be written to all log files immediately. See {@link Logger#defaultWriteInstantly} for default value.
+	 */
+	public void log(Exception exception, boolean writeInstantly) {
+		log(new LogMessage("Exception occurred!", LoggingLevel.ERROR, exception), writeInstantly);
+	}
+
+	/**
+	 * Logs the specified exception.
+	 * @param exception The exception to log
+	 * @param message The message to log
+	 */
+	public void log(Exception exception, String message) {
+		log(new LogMessage(message, LoggingLevel.ERROR, exception), defaultWriteInstantly);
+	}
+
+	/**
+	 * Logs the specified exception.
+	 * @param exception The exception to log
+	 * @param message The message to log
+	 * @param writeInstantly If the message should be written to all log files immediately. See {@link Logger#defaultWriteInstantly} for default value.
+	 */
+	public void log(Exception exception, String message, boolean writeInstantly) {
+		log(new LogMessage(message, LoggingLevel.ERROR, exception), writeInstantly);
+	}
+
+	/**
 	 * Logs the specified log message.
 	 * @param logMessage The log message to log.
 	 * @param writeInstantly If the message should be written to all log files immediately. See {@link Logger#defaultWriteInstantly} for default value.
@@ -135,11 +213,7 @@ public final class Logger {
 		}
 
 		LogEntry entry = new LogEntry(clazz, logMessage, false);
-		if (logMessage.getLevel() == LoggingLevel.INPUT || logMessage.getLevel() == LoggingLevel.INPUT_ERROR) {
-			entry.printInput();
-		} else {
-			entry.print();
-		}
+		entry.print();
 
 		for (LogFile logFile : logFiles) {
 			logFile.addEntry(entry);
@@ -151,6 +225,34 @@ public final class Logger {
 			logMessages.remove(0);
 		}
 		logMessages.add(logMessage);
+	}
+
+	public String readInputLine(String inputLine, @NotNull BufferedReader reader) throws IOException {
+		return logInput(inputLine, reader);
+	}
+
+	public String readInputLine(String message, String inputLine, @NotNull BufferedReader reader) throws IOException {
+		log(new LogMessage(message, LoggingLevel.INFO), defaultWriteInstantly);
+
+		return logInput(inputLine, reader);
+	}
+
+	private String logInput(String inputLine, @NotNull BufferedReader reader) throws IOException {
+		LogMessage inputLogMessage = new LogMessage(inputLine + ": ", LoggingLevel.INPUT);
+		LogEntry inputLogEntry = new LogEntry(clazz, inputLogMessage, false);
+		inputLogEntry.printInput();
+		String line = reader.readLine();
+		inputLogEntry = new LogEntry(clazz, new LogMessage(inputLogMessage.getMessage() + line, LoggingLevel.INPUT), false);
+		for (LogFile logFile : logFiles) {
+			logFile.addEntry(inputLogEntry);
+			logFile.writeEntryAndClear(inputLogEntry);
+		}
+		if (logMessages.size() >= HISTORY_SIZE) {
+			logMessages.remove(0);
+		}
+		logMessages.add(inputLogMessage);
+
+		return line;
 	}
 
 	/**

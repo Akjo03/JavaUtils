@@ -21,10 +21,10 @@ import java.util.*;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-05
- * @version 0.1.0
+ * @version 1.0.0
  */
 @Getter
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ClassCanBeRecord"})
 public class HttpRequest implements Buildable {
 	/**
 	 * The URI where this request is sent to.

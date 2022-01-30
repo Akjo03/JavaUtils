@@ -7,7 +7,7 @@ package io.github.akjo03.util.math.unit;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-21
- * @version 0.1.0
+ * @version 1.0.0
  */
 @SuppressWarnings("unused")
 public enum UnitSystem {

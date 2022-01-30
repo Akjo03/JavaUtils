@@ -129,7 +129,7 @@ public class UnitDimension implements Iterable<UnitDimensionContainer> {
 	}
 
 	private BigDecimal calculateValue(@NotNull UnitDimensionContainer container) {
-		BigDecimal result = null;
+		BigDecimal result;
 		if (container.getUnit() != null) {
 			if (container.getUnit() instanceof BaseUnit<?> baseUnit) {
 				result = baseUnit.getDivisor();

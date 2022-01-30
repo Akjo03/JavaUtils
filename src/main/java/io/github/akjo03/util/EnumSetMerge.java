@@ -14,6 +14,7 @@ public final class EnumSetMerge {
 		return union;
 	}
 
+	@SafeVarargs
 	public static <T extends Enum<T>> @NotNull EnumSet<T> mergeEnumSets(EnumSet<T> @NotNull ... sets) {
 		final EnumSet<T> union = EnumSet.noneOf(sets[0].iterator().next().getDeclaringClass());
 		for (EnumSet<T> set : sets) {

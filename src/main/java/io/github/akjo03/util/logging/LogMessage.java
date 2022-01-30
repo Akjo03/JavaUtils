@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-10-25
- * @version 0.1.0
+ * @version 1.0.0
  */
 @Getter
 public class LogMessage {
@@ -46,6 +46,37 @@ public class LogMessage {
 	 */
 	LogMessage(String message, LoggingLevel level, Throwable throwable) {
 		this.message = message;
+		this.level = level;
+		this.throwable = throwable;
+	}
+
+	/**
+	 * Creates a new LogMessage with the specified message and level of importance.
+	 * @param message The actual message
+	 * @param level The importance of the message
+	 */
+	LogMessage(Object message, LoggingLevel level) {
+		if (message == null) {
+			this.message = "null";
+		} else {
+			this.message = message.toString();
+		}
+		this.level = level;
+		this.throwable = null;
+	}
+
+	/**
+	 * Creates a new LogMessage with the specified message, level of importance and the throwable that caused this message.
+	 * @param message The actual message
+	 * @param level The importance of the message
+	 * @param throwable The {@link Throwable} that caused this message
+	 */
+	LogMessage(Object message, LoggingLevel level, Throwable throwable) {
+		if (message == null) {
+			this.message = "null";
+		} else {
+			this.message = message.toString();
+		}
 		this.level = level;
 		this.throwable = throwable;
 	}

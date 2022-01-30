@@ -18,7 +18,7 @@ import java.util.Objects;
  *
  * @author Lukas Freckmann (Akjo03)
  * @since 2021-11-21
- * @version 0.1.0
+ * @version 1.0.0
  */
 @SuppressWarnings("unused")
 public abstract class Quantity<T extends Unit<T>> extends Number implements Comparable<Quantity<T>> {
@@ -68,27 +68,11 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param unit The unit to convert to.
 	 * @return This quantity back converted to the given unit.
 	 */
-	public Quantity<T> convertTo(T unit) {
+	protected Quantity<T> convertTo(T unit) {
 		BigDecimal conversionFactor = this.unit.getConversionFactor(unit);
 		this.value = this.value.multiply(conversionFactor);
 		this.unit = unit;
 		return this;
-	}
-
-	/**
-	 * Compares this quantity to the given unit with the maximum scale of 20. Scale is the number of decimal places to use when comparing.
-	 * <br/><br/>
-	 * The comparison rounds half up to the given scale. This means that the comparison will be true if the difference between the two values is less than half to 20 decimal places.
-	 * <br/><br/>
-	 * For example, if the scale is 2, then the comparison will be true if the difference between the two values is less than 0.00000000000000000005.
-	 * <br/><br/>
-	 * This method is equivalent to calling {@link #compareToScaled(Quantity, int)} with a scale of 20. If you want to compare with less precision (which is recommended), use {@link #compareToScaled(Quantity, int)} instead.
-	 * @param o The unit to compare to.
-	 * @return The result of the comparison.
-	 */
-	@Override
-	public int compareTo(@NotNull Quantity<T> o) {
-		return compareToScaled(o, 20);
 	}
 
 	/**
@@ -97,13 +81,13 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * The comparison rounds half up to the given scale. This means that the comparison will be true if the difference between the two values is less than half to the given scale
 	 * <br/><br/>
 	 * For example, if the scale is 2, then the comparison will be true if the difference between the two values is less than 0.05.
-	 * @param o The unit to compare to.
+	 * @param other The unit to compare to.
 	 * @param scale The scale to use when comparing.
 	 * @return The result of the comparison as defined by {@link BigDecimal#compareTo(BigDecimal)}.
 	 */
-	public int compareToScaled(@NotNull Quantity<T> o, int scale) {
+	protected int compareToScaled(@NotNull Quantity<T> other, int scale) {
 		BigDecimal thisScaled = this.value.setScale(scale, RoundingMode.HALF_UP);
-		BigDecimal otherScaled = o.convertTo(this.unit).getValue().setScale(scale, RoundingMode.HALF_UP);
+		BigDecimal otherScaled = other.convertTo(this.unit).getValue().setScale(scale, RoundingMode.HALF_UP);
 		return thisScaled.compareTo(otherScaled);
 	}
 
@@ -112,7 +96,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param quantity The quantity to add.
 	 * @return This quantity with the given quantity added.
 	 */
-	public Quantity<T> add(@NotNull Quantity<T> quantity) {
+	protected Quantity<T> add(@NotNull Quantity<T> quantity) {
 		this.value = this.value.add(quantity.convertTo(this.unit).getValue());
 		return this;
 	}
@@ -122,7 +106,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param value The value to add.
 	 * @return This quantity with the given value added.
 	 */
-	public Quantity<T> add(@NotNull BigDecimal value) {
+	protected Quantity<T> add(@NotNull BigDecimal value) {
 		this.value = this.value.add(value);
 		return this;
 	}
@@ -132,7 +116,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param quantity The quantity to subtract.
 	 * @return This quantity with the given quantity subtracted.
 	 */
-	public Quantity<T> subtract(@NotNull Quantity<T> quantity) {
+	protected Quantity<T> subtract(@NotNull Quantity<T> quantity) {
 		this.value = this.value.subtract(quantity.convertTo(this.unit).getValue());
 		return this;
 	}
@@ -142,7 +126,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param value The value to subtract.
 	 * @return This quantity with the given value subtracted.
 	 */
-	public Quantity<T> subtract(@NotNull BigDecimal value) {
+	protected Quantity<T> subtract(@NotNull BigDecimal value) {
 		this.value = this.value.subtract(value);
 		return this;
 	}
@@ -152,7 +136,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param quantity The quantity to multiply by.
 	 * @return This quantity with the given quantity multiplied by.
 	 */
-	public Quantity<T> multiply(@NotNull Quantity<T> quantity) {
+	protected Quantity<T> multiply(@NotNull Quantity<T> quantity) {
 		this.value = this.value.multiply(quantity.convertTo(this.unit).getValue());
 		return this;
 	}
@@ -162,7 +146,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param value The value to multiply by.
 	 * @return This quantity with the given value multiplied by.
 	 */
-	public Quantity<T> multiply(@NotNull BigDecimal value) {
+	protected Quantity<T> multiply(@NotNull BigDecimal value) {
 		this.value = this.value.multiply(value);
 		return this;
 	}
@@ -172,7 +156,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param quantity The quantity to divide by.
 	 * @return This quantity with the given quantity divided by.
 	 */
-	public Quantity<T> divide(@NotNull Quantity<T> quantity) {
+	protected Quantity<T> divide(@NotNull Quantity<T> quantity) {
 		this.value = this.value.divide(quantity.convertTo(this.unit).getValue(), 20, RoundingMode.HALF_UP);
 		return this;
 	}
@@ -182,7 +166,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param value The value to divide by.
 	 * @return This quantity with the given value divided by.
 	 */
-	public Quantity<T> divide(@NotNull BigDecimal value) {
+	protected Quantity<T> divide(@NotNull BigDecimal value) {
 		this.value = this.value.divide(value, 20, RoundingMode.HALF_UP);
 		return this;
 	}
@@ -191,7 +175,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * Negates this quantity.
 	 * @return This quantity with the value negated.
 	 */
-	public Quantity<T> negate() {
+	protected Quantity<T> negate() {
 		this.value = this.value.negate();
 		return this;
 	}
@@ -199,7 +183,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	/**
 	 * @return The absolute value of this quantity.
 	 */
-	public Quantity<T> abs() {
+	protected Quantity<T> abs() {
 		this.value = this.value.abs();
 		return this;
 	}
@@ -209,7 +193,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param n The power to raise to.
 	 * @return This quantity with the value raised to the given power.
 	 */
-	public Quantity<T> pow(int n) {
+	protected Quantity<T> pow(int n) {
 		this.value = this.value.pow(n);
 		return this;
 	}
@@ -218,7 +202,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * Takes the square root of this quantity.
 	 * @return This quantity with the square root of the value.
 	 */
-	public Quantity<T> sqrt() {
+	protected Quantity<T> sqrt() {
 		this.value = this.value.sqrt(new MathContext(50, RoundingMode.HALF_UP));
 		return this;
 	}
@@ -228,7 +212,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param scale The number of decimal places to round to.
 	 * @return This quantity with the value rounded to the given number of decimal places.
 	 */
-	public Quantity<T> round(int scale) {
+	protected Quantity<T> round(int scale) {
 		this.value = this.value.setScale(scale, RoundingMode.HALF_UP);
 		return this;
 	}
@@ -239,7 +223,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 * @param roundingMode The rounding mode to use.
 	 * @return This quantity with the value rounded to the given number of decimal places.
 	 */
-	public Quantity<T> round(int scale, RoundingMode roundingMode) {
+	protected Quantity<T> round(int scale, RoundingMode roundingMode) {
 		this.value = this.value.setScale(scale, roundingMode);
 		return this;
 	}
@@ -259,9 +243,7 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	public String toStringLocalized(Locale locale) {
 		StringArr2 name = this.unit.getLocalizedName(locale);
 
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(20);
-		df.setDecimalFormatSymbols(new DecimalFormatSymbols(locale));
+		DecimalFormat df = getDecimalFormat(locale);
 		if (this.value.compareTo(BigDecimal.ONE) > 0) {
 			return df.format(this.value) + " " + name.getSecond();
 		} else {
@@ -276,10 +258,21 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	public String toStringLocalizedWithAbbreviation(Locale locale) {
 		String abbreviation = this.unit.getLocalizedAbbreviation(locale);
 
+		DecimalFormat df = getDecimalFormat(locale);
+		return df.format(this.value) + " " + abbreviation;
+	}
+
+	private @NotNull DecimalFormat getDecimalFormat(Locale locale) {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(20);
-		df.setDecimalFormatSymbols(new DecimalFormatSymbols(locale));
-		return df.format(this.value) + " " + abbreviation;
+		DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
+		if (this.value.compareTo(BigDecimal.ONE) > 0 || this.value.compareTo(BigDecimal.ONE.negate()) < 0) {
+			dfs.setExponentSeparator("e+");
+		} else {
+			dfs.setExponentSeparator("e");
+		}
+		df.setDecimalFormatSymbols(dfs);
+		return df;
 	}
 
 	@Override

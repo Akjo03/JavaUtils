@@ -1,7 +1,7 @@
 package io.github.akjo03.util.math.unit.units.acceleration;
 
 import io.github.akjo03.util.lang.Language;
-import io.github.akjo03.util.math.array.StringArr2;
+import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import io.github.akjo03.util.math.unit.derived.dimension.UnitDimension;
@@ -9,6 +9,7 @@ import io.github.akjo03.util.math.unit.units.length.LengthUnit;
 import io.github.akjo03.util.math.unit.units.time.TimeUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 import java.util.Map;
@@ -74,5 +75,15 @@ public enum AccelerationUnit implements DerivedUnit<AccelerationUnit> {
 		this.localizedAbbreviations = localizedAbbreviations;
 		this.defaultAbbreviation = defaultAbbreviation;
 		this.unitSystem = unitSystem;
+	}
+
+	@Override
+	public @NotNull String getID() {
+		return this.name();
+	}
+
+	@Override
+	public String toString() {
+		return "AccelerationUnit." + this.name();
 	}
 }

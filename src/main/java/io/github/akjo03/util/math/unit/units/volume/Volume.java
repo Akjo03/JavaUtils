@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.volume;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.derived.DerivedQuantity;
+import io.github.akjo03.util.math.unit.units.time.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Volume extends DerivedQuantity<VolumeUnit> implements Comparable<Quantity<VolumeUnit>> {
-	public Volume(BigDecimal value, VolumeUnit unit) {
+	public Volume(BigDecimal value, @NotNull VolumeUnit unit) {
+		super(value, unit);
+	}
+
+	public Volume(double value, @NotNull VolumeUnit unit) {
+		super(value, unit);
+	}
+
+	public Volume(float value, @NotNull VolumeUnit unit) {
+		super(value, unit);
+	}
+
+	public Volume(long value, @NotNull VolumeUnit unit) {
+		super(value, unit);
+	}
+
+	public Volume(int value, @NotNull VolumeUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Volume extends DerivedQuantity<VolumeUnit> implements Comparable<Qu
 
 	public Volume round(int scale, RoundingMode roundingMode) {
 		return (Volume) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Volume{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

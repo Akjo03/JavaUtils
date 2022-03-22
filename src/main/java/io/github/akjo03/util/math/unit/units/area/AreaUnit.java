@@ -1,7 +1,7 @@
 package io.github.akjo03.util.math.unit.units.area;
 
 import io.github.akjo03.util.lang.Language;
-import io.github.akjo03.util.math.array.StringArr2;
+import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import io.github.akjo03.util.math.unit.derived.dimension.UnitDimension;
@@ -215,5 +215,15 @@ public enum AreaUnit implements DerivedUnit<AreaUnit> {
 		this.localizedAbbreviations = localizedAbbreviations;
 		this.defaultAbbreviation = defaultAbbreviation;
 		this.unitSystem = unitSystem;
+	}
+
+	@Override
+	public @NotNull String getID() {
+		return this.name();
+	}
+
+	@Override
+	public String toString() {
+		return "AreaUnit." + this.name();
 	}
 }

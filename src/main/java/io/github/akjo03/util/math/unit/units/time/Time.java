@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.time;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.base.BaseQuantity;
+import io.github.akjo03.util.math.unit.units.speed.SpeedUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Time extends BaseQuantity<TimeUnit> implements Comparable<Quantity<TimeUnit>> {
-	public Time(BigDecimal value, TimeUnit unit) {
+	public Time(BigDecimal value, @NotNull TimeUnit unit) {
+		super(value, unit);
+	}
+
+	public Time(double value, @NotNull TimeUnit unit) {
+		super(value, unit);
+	}
+
+	public Time(float value, @NotNull TimeUnit unit) {
+		super(value, unit);
+	}
+
+	public Time(long value, @NotNull TimeUnit unit) {
+		super(value, unit);
+	}
+
+	public Time(int value, @NotNull TimeUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Time extends BaseQuantity<TimeUnit> implements Comparable<Quantity<
 
 	public Time round(int scale, RoundingMode roundingMode) {
 		return (Time) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Time{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

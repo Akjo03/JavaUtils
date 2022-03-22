@@ -7,7 +7,23 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public abstract class DerivedQuantity<T extends DerivedUnit<T>> extends Quantity<T> implements Comparable<Quantity<T>> {
-	protected DerivedQuantity(BigDecimal value, T unit) {
+	protected DerivedQuantity(BigDecimal value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected DerivedQuantity(double value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected DerivedQuantity(float value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected DerivedQuantity(long value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected DerivedQuantity(int value, @NotNull T unit) {
 		super(value, unit);
 	}
 

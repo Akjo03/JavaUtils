@@ -1,7 +1,7 @@
 package io.github.akjo03.util.math.unit.units.length;
 
 import io.github.akjo03.util.lang.Language;
-import io.github.akjo03.util.math.array.StringArr2;
+import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.base.BaseUnit;
 import lombok.Getter;
@@ -183,5 +183,15 @@ public enum LengthUnit implements BaseUnit<LengthUnit> {
 	@Override
 	public LengthUnit getBaseUnit() {
 		return METRE;
+	}
+
+	@Override
+	public @NotNull String getID() {
+		return this.name();
+	}
+
+	@Override
+	public String toString() {
+		return "LengthUnit." + this.name();
 	}
 }

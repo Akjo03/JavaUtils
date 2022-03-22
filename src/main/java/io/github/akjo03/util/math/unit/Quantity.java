@@ -1,9 +1,14 @@
 package io.github.akjo03.util.math.unit;
 
-import io.github.akjo03.util.math.array.StringArr2;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializable;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import io.github.akjo03.util.array.StringArr2;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -21,7 +26,7 @@ import java.util.Objects;
  * @version 1.0.0
  */
 @SuppressWarnings("unused")
-public abstract class Quantity<T extends Unit<T>> extends Number implements Comparable<Quantity<T>> {
+public abstract class Quantity<T extends Unit<T>> extends Number implements JsonSerializable, Comparable<Quantity<T>> {
 	/**
 	 * The value of this quantity.
 	 */
@@ -40,6 +45,46 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 	 */
 	protected Quantity(@NotNull BigDecimal value, @NotNull T unit) {
 		this.value = value;
+		this.unit = unit;
+	}
+
+	/**
+	 * Creates a new quantity with the given value and unit.
+	 * @param value The value of the quantity.
+	 * @param unit The unit of the quantity.
+	 */
+	protected Quantity(double value, @NotNull T unit) {
+		this.value = BigDecimal.valueOf(value);
+		this.unit = unit;
+	}
+
+	/**
+	 * Creates a new quantity with the given value and unit.
+	 * @param value The value of the quantity.
+	 * @param unit The unit of the quantity.
+	 */
+	protected Quantity(float value, @NotNull T unit) {
+		this.value = BigDecimal.valueOf(value);
+		this.unit = unit;
+	}
+
+	/**
+	 * Creates a new quantity with the given value and unit.
+	 * @param value The value of the quantity.
+	 * @param unit The unit of the quantity.
+	 */
+	protected Quantity(long value, @NotNull T unit) {
+		this.value = BigDecimal.valueOf(value);
+		this.unit = unit;
+	}
+
+	/**
+	 * Creates a new quantity with the given value and unit.
+	 * @param value The value of the quantity.
+	 * @param unit The unit of the quantity.
+	 */
+	protected Quantity(int value, @NotNull T unit) {
+		this.value = BigDecimal.valueOf(value);
 		this.unit = unit;
 	}
 
@@ -236,6 +281,8 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 		return toStringLocalized(Locale.getDefault());
 	}
 
+	public abstract String toObjectString();
+
 	/**
 	 * @param locale The locale to use when creating the string.
 	 * @return A localized string representation of this unit.
@@ -273,6 +320,19 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Comp
 		}
 		df.setDecimalFormatSymbols(dfs);
 		return df;
+	}
+
+	@Override
+	public void serialize(JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+		jsonGenerator.writeStartObject();
+		jsonGenerator.writeNumberField("value", this.value.doubleValue());
+		jsonGenerator.writeStringField("unit", this.unit.getClass().getSimpleName() + "." + this.unit.getID());
+		jsonGenerator.writeEndObject();
+	}
+
+	@Override
+	public void serializeWithType(JsonGenerator jsonGenerator, SerializerProvider serializerProvider, TypeSerializer typeSerializer) throws IOException {
+		serialize(jsonGenerator, serializerProvider);
 	}
 
 	@Override

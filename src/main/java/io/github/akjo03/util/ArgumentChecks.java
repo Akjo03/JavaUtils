@@ -37,8 +37,7 @@ public final class ArgumentChecks {
 	 * @param <T> The inferred type of the argument
 	 * @return The argument back
 	 */
-	@Contract("!null, _ -> param1")
-	public static <T> @NotNull T requireArgumentNotNull(T arg, String message) {
+	public static <T> T requireArgumentNotNull(T arg, String message) {
 		if (arg == null) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be not null!");
 			LOGGER.log(message, LoggingLevel.ERROR, iae);
@@ -54,8 +53,7 @@ public final class ArgumentChecks {
 	 * @param <T> The inferred type of the argument
 	 * @return The argument back
 	 */
-	@Contract("null, _, false -> fail; !null, _, _ -> param1")
-	public static <T> @NotNull T requireArgumentNotNull(T arg, String message, boolean log) {
+	public static <T> T requireArgumentNotNull(T arg, String message, boolean log) {
 		if (arg == null) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be not null!");
 			if (log) {

@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.area;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.derived.DerivedQuantity;
+import io.github.akjo03.util.math.unit.units.acceleration.AccelerationUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Area extends DerivedQuantity<AreaUnit> implements Comparable<Quantity<AreaUnit>> {
-	public Area(BigDecimal value, AreaUnit unit) {
+	public Area(BigDecimal value, @NotNull AreaUnit unit) {
+		super(value, unit);
+	}
+
+	public Area(double value, @NotNull AreaUnit unit) {
+		super(value, unit);
+	}
+
+	public Area(float value, @NotNull AreaUnit unit) {
+		super(value, unit);
+	}
+
+	public Area(long value, @NotNull AreaUnit unit) {
+		super(value, unit);
+	}
+
+	public Area(int value, @NotNull AreaUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Area extends DerivedQuantity<AreaUnit> implements Comparable<Quanti
 
 	public Area round(int scale, RoundingMode roundingMode) {
 		return (Area) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Area{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

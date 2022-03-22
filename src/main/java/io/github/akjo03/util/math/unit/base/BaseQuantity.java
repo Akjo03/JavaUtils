@@ -7,7 +7,23 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public abstract class BaseQuantity<T extends BaseUnit<T>> extends Quantity<T> implements Comparable<Quantity<T>> {
-	protected BaseQuantity(BigDecimal value, T unit) {
+	protected BaseQuantity(BigDecimal value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected BaseQuantity(double value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected BaseQuantity(float value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected BaseQuantity(long value, @NotNull T unit) {
+		super(value, unit);
+	}
+
+	protected BaseQuantity(int value, @NotNull T unit) {
 		super(value, unit);
 	}
 

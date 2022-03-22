@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.length;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.base.BaseQuantity;
+import io.github.akjo03.util.math.unit.units.area.AreaUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Length extends BaseQuantity<LengthUnit> implements Comparable<Quantity<LengthUnit>> {
-	public Length(BigDecimal value, LengthUnit unit) {
+	public Length(BigDecimal value, @NotNull LengthUnit unit) {
+		super(value, unit);
+	}
+
+	public Length(double value, @NotNull LengthUnit unit) {
+		super(value, unit);
+	}
+
+	public Length(float value, @NotNull LengthUnit unit) {
+		super(value, unit);
+	}
+
+	public Length(long value, @NotNull LengthUnit unit) {
+		super(value, unit);
+	}
+
+	public Length(int value, @NotNull LengthUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Length extends BaseQuantity<LengthUnit> implements Comparable<Quant
 
 	public Length round(int scale, RoundingMode roundingMode) {
 		return (Length) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Length{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

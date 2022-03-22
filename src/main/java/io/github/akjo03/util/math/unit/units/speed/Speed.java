@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.speed;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.derived.DerivedQuantity;
+import io.github.akjo03.util.math.unit.units.mass.MassUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Speed extends DerivedQuantity<SpeedUnit> implements Comparable<Quantity<SpeedUnit>> {
-	public Speed(BigDecimal value, SpeedUnit unit) {
+	public Speed(BigDecimal value, @NotNull SpeedUnit unit) {
+		super(value, unit);
+	}
+
+	public Speed(double value, @NotNull SpeedUnit unit) {
+		super(value, unit);
+	}
+
+	public Speed(float value, @NotNull SpeedUnit unit) {
+		super(value, unit);
+	}
+
+	public Speed(long value, @NotNull SpeedUnit unit) {
+		super(value, unit);
+	}
+
+	public Speed(int value, @NotNull SpeedUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Speed extends DerivedQuantity<SpeedUnit> implements Comparable<Quan
 
 	public Speed round(int scale, RoundingMode roundingMode) {
 		return (Speed) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Speed{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

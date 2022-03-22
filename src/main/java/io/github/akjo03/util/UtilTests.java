@@ -3,7 +3,10 @@ package io.github.akjo03.util;
 import io.github.akjo03.util.logging.LogFile;
 import io.github.akjo03.util.logging.Logger;
 import io.github.akjo03.util.logging.LoggerManager;
+import io.github.akjo03.util.math.AdditionalBigDecimalMath;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.nio.file.Path;
 
 public class UtilTests implements Runnable {
@@ -19,5 +22,7 @@ public class UtilTests implements Runnable {
 	}
 
 	@Override
-	public void run() {}
+	public void run() {
+		System.out.println(AdditionalBigDecimalMath.toRadians(new BigDecimal("7.0"), MathContext.DECIMAL64));
+	}
 }

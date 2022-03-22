@@ -1,6 +1,6 @@
 package io.github.akjo03.util.math.unit;
 
-import io.github.akjo03.util.math.array.StringArr2;
+import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.base.BaseUnit;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import org.apache.commons.lang3.LocaleUtils;
@@ -17,6 +17,8 @@ import java.util.Objects;
  */
 @SuppressWarnings("unused")
 public interface Unit<T extends Unit<T>> {
+	@NotNull String getID();
+
 	/**
 	 * Gets the conversion factor from this unit to the given unit.
 	 * @param unit The unit to convert to.

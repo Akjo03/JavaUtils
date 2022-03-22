@@ -8,7 +8,7 @@ import java.util.EnumSet;
 public final class EnumSetMerge {
 	private EnumSetMerge() {}
 
-	public static <T extends Enum<T>> @NotNull EnumSet<T> mergeEnumSet(EnumSet<T> a, EnumSet<T> b) {
+	public static <T extends Enum<T>> @NotNull EnumSet<T> mergeEnumSets(EnumSet<T> a, EnumSet<T> b) {
 		final EnumSet<T> union = EnumSet.copyOf(a);
 		union.addAll(b);
 		return union;

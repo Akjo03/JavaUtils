@@ -2,13 +2,30 @@ package io.github.akjo03.util.math.unit.units.mass;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.base.BaseQuantity;
+import io.github.akjo03.util.math.unit.units.length.LengthUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Mass extends BaseQuantity<MassUnit> implements Comparable<Quantity<MassUnit>> {
-	public Mass(BigDecimal value, MassUnit unit) {
+	public Mass(BigDecimal value, @NotNull MassUnit unit) {
+		super(value, unit);
+	}
+
+	public Mass(double value, @NotNull MassUnit unit) {
+		super(value, unit);
+	}
+
+	public Mass(float value, @NotNull MassUnit unit) {
+		super(value, unit);
+	}
+
+	public Mass(long value, @NotNull MassUnit unit) {
+		super(value, unit);
+	}
+
+	public Mass(int value, @NotNull MassUnit unit) {
 		super(value, unit);
 	}
 
@@ -80,5 +97,10 @@ public class Mass extends BaseQuantity<MassUnit> implements Comparable<Quantity<
 
 	public Mass round(int scale, RoundingMode roundingMode) {
 		return (Mass) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Mass{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

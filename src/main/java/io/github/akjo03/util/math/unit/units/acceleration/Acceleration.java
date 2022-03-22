@@ -12,6 +12,22 @@ public class Acceleration extends DerivedQuantity<AccelerationUnit> implements C
 		super(value, unit);
 	}
 
+	public Acceleration(double value, @NotNull AccelerationUnit unit) {
+		super(value, unit);
+	}
+
+	public Acceleration(float value, @NotNull AccelerationUnit unit) {
+		super(value, unit);
+	}
+
+	public Acceleration(long value, @NotNull AccelerationUnit unit) {
+		super(value, unit);
+	}
+
+	public Acceleration(int value, @NotNull AccelerationUnit unit) {
+		super(value, unit);
+	}
+
 	@Override
 	public Acceleration convertTo(AccelerationUnit unit) {
 		return (Acceleration) super.convertTo(unit);
@@ -80,5 +96,10 @@ public class Acceleration extends DerivedQuantity<AccelerationUnit> implements C
 
 	public Acceleration round(int scale, RoundingMode roundingMode) {
 		return (Acceleration) super.round(scale, roundingMode);
+	}
+
+	@Override
+	public String toObjectString() {
+		return "Acceleration{" + "value=" + getValue() + ", unit=" + getUnit() + '}';
 	}
 }

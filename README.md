@@ -23,6 +23,6 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Authors
 
-* **Lukas Freckmann** - *Initial work* - [Akjo03](https://github.com/Akjo03)
+* **Lukas Küffer** - *Initial work* - [Akjo03](https://github.com/Akjo03)
 
 See also the list of [contributors](https://github.com/Akjo03/JavaUtils/contributors) who participated in this project.

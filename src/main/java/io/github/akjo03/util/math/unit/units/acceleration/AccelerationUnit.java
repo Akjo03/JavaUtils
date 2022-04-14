@@ -5,11 +5,13 @@ import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import io.github.akjo03.util.math.unit.derived.dimension.UnitDimension;
+import io.github.akjo03.util.math.unit.units.area.AreaUnit;
 import io.github.akjo03.util.math.unit.units.length.LengthUnit;
 import io.github.akjo03.util.math.unit.units.time.TimeUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 import java.util.Map;
@@ -82,8 +84,17 @@ public enum AccelerationUnit implements DerivedUnit<AccelerationUnit> {
 		return this.name();
 	}
 
+	public static @Nullable AccelerationUnit getUnit(@NotNull String unitStr) {
+		for (AccelerationUnit unit : values()) {
+			if (unit.toString().equals(unitStr)) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public String toString() {
-		return "AccelerationUnit." + this.name();
+	public @NotNull String toString() {
+		return this.getClass().getSimpleName() + "." + this.name();
 	}
 }

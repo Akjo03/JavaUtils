@@ -6,10 +6,13 @@ import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import io.github.akjo03.util.math.unit.derived.dimension.UnitDimension;
 import io.github.akjo03.util.math.unit.units.length.LengthUnit;
+import io.github.akjo03.util.math.unit.units.mass.MassUnit;
 import io.github.akjo03.util.math.unit.units.time.TimeUnit;
+import io.github.akjo03.util.math.unit.units.volume.VolumeUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 import java.util.Map;
@@ -125,8 +128,17 @@ public enum SpeedUnit implements DerivedUnit<SpeedUnit> {
 		return this.name();
 	}
 
+	public static @Nullable SpeedUnit getUnit(@NotNull String unitStr) {
+		for (SpeedUnit unit : values()) {
+			if (unit.toString().equals(unitStr)) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public String toString() {
-		return "SpeedUnit." + this.name();
+	public @NotNull String toString() {
+		return this.getClass().getSimpleName() + "." + this.name();
 	}
 }

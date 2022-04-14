@@ -5,10 +5,13 @@ import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.derived.DerivedUnit;
 import io.github.akjo03.util.math.unit.derived.dimension.UnitDimension;
+import io.github.akjo03.util.math.unit.units.acceleration.AccelerationUnit;
 import io.github.akjo03.util.math.unit.units.length.LengthUnit;
+import io.github.akjo03.util.math.unit.units.mass.MassUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -222,8 +225,17 @@ public enum AreaUnit implements DerivedUnit<AreaUnit> {
 		return this.name();
 	}
 
+	public static @Nullable AreaUnit getUnit(@NotNull String unitStr) {
+		for (AreaUnit unit : values()) {
+			if (unit.toString().equals(unitStr)) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public String toString() {
-		return "AreaUnit." + this.name();
+	public @NotNull String toString() {
+		return this.getClass().getSimpleName() + "." + this.name();
 	}
 }

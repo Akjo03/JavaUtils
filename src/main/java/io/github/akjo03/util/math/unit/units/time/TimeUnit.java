@@ -4,9 +4,12 @@ import io.github.akjo03.util.lang.Language;
 import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.base.BaseUnit;
+import io.github.akjo03.util.math.unit.units.mass.MassUnit;
+import io.github.akjo03.util.math.unit.units.volume.VolumeUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -153,8 +156,17 @@ public enum TimeUnit implements BaseUnit<TimeUnit> {
 		return this.name();
 	}
 
+	public static @Nullable TimeUnit getUnit(@NotNull String unitStr) {
+		for (TimeUnit unit : values()) {
+			if (unit.toString().equals(unitStr)) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public String toString() {
-		return "TimeUnit." + this.name();
+	public @NotNull String toString() {
+		return this.getClass().getSimpleName() + "." + this.name();
 	}
 }

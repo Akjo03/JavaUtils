@@ -4,9 +4,12 @@ import io.github.akjo03.util.lang.Language;
 import io.github.akjo03.util.array.StringArr2;
 import io.github.akjo03.util.math.unit.UnitSystem;
 import io.github.akjo03.util.math.unit.base.BaseUnit;
+import io.github.akjo03.util.math.unit.units.acceleration.AccelerationUnit;
+import io.github.akjo03.util.math.unit.units.mass.MassUnit;
 import lombok.Getter;
 import org.apache.commons.lang3.LocaleUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -180,6 +183,8 @@ public enum LengthUnit implements BaseUnit<LengthUnit> {
 		this.unitSystem = unitSystem;
 	}
 
+
+
 	@Override
 	public LengthUnit getBaseUnit() {
 		return METRE;
@@ -190,8 +195,17 @@ public enum LengthUnit implements BaseUnit<LengthUnit> {
 		return this.name();
 	}
 
+	public static @Nullable LengthUnit getUnit(@NotNull String unitStr) {
+		for (LengthUnit unit : values()) {
+			if (unit.toString().equals(unitStr)) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public String toString() {
-		return "LengthUnit." + this.name();
+	public @NotNull String toString() {
+		return this.getClass().getSimpleName() + "." + this.name();
 	}
 }

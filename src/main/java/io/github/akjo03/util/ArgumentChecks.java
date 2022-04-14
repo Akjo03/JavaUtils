@@ -6,6 +6,7 @@ import io.github.akjo03.util.logging.LoggingLevel;
 import io.github.akjo03.util.math.Range;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
@@ -37,7 +38,7 @@ public final class ArgumentChecks {
 	 * @param <T> The inferred type of the argument
 	 * @return The argument back
 	 */
-	public static <T> T requireArgumentNotNull(T arg, String message) {
+	public static <T> T requireArgumentNotNull(@Nullable T arg, String message) {
 		if (arg == null) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be not null!");
 			LOGGER.log(message, LoggingLevel.ERROR, iae);
@@ -53,7 +54,7 @@ public final class ArgumentChecks {
 	 * @param <T> The inferred type of the argument
 	 * @return The argument back
 	 */
-	public static <T> T requireArgumentNotNull(T arg, String message, boolean log) {
+	public static <T> T requireArgumentNotNull(@Nullable T arg, String message, boolean log) {
 		if (arg == null) {
 			IllegalArgumentException iae = new IllegalArgumentException("Argument required to be not null!");
 			if (log) {

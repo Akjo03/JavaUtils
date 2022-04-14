@@ -1,14 +1,11 @@
 package io.github.akjo03.util.math.unit;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializable;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import com.google.gson.JsonObject;
 import io.github.akjo03.util.array.StringArr2;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -26,7 +23,7 @@ import java.util.Objects;
  * @version 1.0.0
  */
 @SuppressWarnings("unused")
-public abstract class Quantity<T extends Unit<T>> extends Number implements JsonSerializable, Comparable<Quantity<T>> {
+public abstract class Quantity<T extends Unit<T>> extends Number implements Comparable<Quantity<T>> {
 	/**
 	 * The value of this quantity.
 	 */
@@ -322,17 +319,11 @@ public abstract class Quantity<T extends Unit<T>> extends Number implements Json
 		return df;
 	}
 
-	@Override
-	public void serialize(JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-		jsonGenerator.writeStartObject();
-		jsonGenerator.writeNumberField("value", this.value.doubleValue());
-		jsonGenerator.writeStringField("unit", this.unit.getClass().getSimpleName() + "." + this.unit.getID());
-		jsonGenerator.writeEndObject();
-	}
-
-	@Override
-	public void serializeWithType(JsonGenerator jsonGenerator, SerializerProvider serializerProvider, TypeSerializer typeSerializer) throws IOException {
-		serialize(jsonGenerator, serializerProvider);
+	public JsonObject gsonSerialize() {
+		JsonObject json = new JsonObject();
+		json.addProperty("value", this.value.doubleValue());
+		json.addProperty("unit", this.unit.toString());
+		return json;
 	}
 
 	@Override

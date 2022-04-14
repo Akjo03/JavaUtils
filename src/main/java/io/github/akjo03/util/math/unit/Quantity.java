@@ -1,6 +1,5 @@
 package io.github.akjo03.util.math.unit;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
 import com.google.gson.JsonObject;
 import io.github.akjo03.util.array.StringArr2;
 import lombok.Getter;

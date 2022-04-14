@@ -2,7 +2,6 @@ package io.github.akjo03.util.math.unit.units.mass;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.base.BaseQuantity;
-import io.github.akjo03.util.math.unit.units.length.LengthUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;

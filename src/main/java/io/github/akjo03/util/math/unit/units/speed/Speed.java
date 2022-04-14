@@ -2,7 +2,6 @@ package io.github.akjo03.util.math.unit.units.speed;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.derived.DerivedQuantity;
-import io.github.akjo03.util.math.unit.units.mass.MassUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;

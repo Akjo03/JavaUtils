@@ -2,7 +2,6 @@ package io.github.akjo03.util.math.unit.units.time;
 
 import io.github.akjo03.util.math.unit.Quantity;
 import io.github.akjo03.util.math.unit.base.BaseQuantity;
-import io.github.akjo03.util.math.unit.units.speed.SpeedUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;

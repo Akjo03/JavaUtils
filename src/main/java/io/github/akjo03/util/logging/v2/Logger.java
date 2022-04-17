@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class Logger {
 	@Getter
 	@NotNull private final String name;
@@ -28,6 +29,10 @@ public final class Logger {
 		this.clazz = clazz;
 		this.logFiles = new ArrayList<>();
 		this.minimumLoggingLevel = minimumLoggingLevel;
+	}
+
+	public void empty() {
+		System.out.println();
 	}
 
 	public void log(Object obj, LoggingLevel level) {

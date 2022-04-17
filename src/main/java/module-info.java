@@ -16,6 +16,7 @@ module utils {
 	requires java.net.http;
 	requires org.apache.commons.io;
 	requires java.desktop;
+	requires arguments.parser;
 
 	exports io.github.akjo03.util;
 	exports io.github.akjo03.util.apis.twitch;

@@ -18,10 +18,8 @@ public final class Logger {
 	private final List<LogFile> logFiles;
 
 	@Getter
-	@Setter
 	private LoggingLevel minimumLoggingLevel;
 	@Getter
-	@Setter
 	private String loggingFormat = "[%t] [%s%c / %l]: %m";
 
 	public Logger(@NotNull String name, @Nullable Class<?> clazz, @NotNull LoggingLevel minimumLoggingLevel) {
@@ -29,6 +27,16 @@ public final class Logger {
 		this.clazz = clazz;
 		this.logFiles = new ArrayList<>();
 		this.minimumLoggingLevel = minimumLoggingLevel;
+	}
+
+	public Logger setMinimumLoggingLevel(LoggingLevel level) {
+		this.minimumLoggingLevel = level;
+		return this;
+	}
+
+	public Logger setLoggingFormat(String loggingFormat) {
+		this.loggingFormat = loggingFormat;
+		return this;
 	}
 
 	public void empty() {
@@ -130,6 +138,26 @@ public final class Logger {
 
 	public void info(String message, Throwable throwable) {
 		log(new LogMessage(message, LoggingLevel.INFO, throwable));
+	}
+
+	public void success(Object obj) {
+		log(new LogMessage(obj == null ? "null" : obj.toString(), LoggingLevel.SUCCESS));
+	}
+
+	public void success(Object obj, Throwable throwable) {
+		log(new LogMessage(obj == null ? "null" : obj.toString(), LoggingLevel.SUCCESS, throwable));
+	}
+
+	public void success(String message) {
+		log(new LogMessage(message, LoggingLevel.SUCCESS));
+	}
+
+	public void success(Throwable throwable) {
+		log(new LogMessage(throwable, LoggingLevel.SUCCESS));
+	}
+
+	public void success(String message, Throwable throwable) {
+		log(new LogMessage(message, LoggingLevel.SUCCESS, throwable));
 	}
 
 	public void warn(Object obj) {

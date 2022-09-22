@@ -182,3 +182,5 @@ logs/
 # Others
 .factorypath
 .settings/
+
+settings.xml

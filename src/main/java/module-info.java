@@ -12,7 +12,6 @@ module utils {
 	requires jdk.httpserver;
 	requires com.fasterxml.jackson.datatype.jdk8;
 	requires com.fasterxml.jackson.datatype.jsr310;
-	requires net.dv8tion.jda;
 	requires java.net.http;
 	requires org.apache.commons.io;
 	requires java.desktop;
@@ -23,11 +22,6 @@ module utils {
 	exports io.github.akjo03.util.apis.twitch.data.util;
 	exports io.github.akjo03.util.apis.twitch.data.api;
 	exports io.github.akjo03.util.apis.twitch.data.auth;
-	exports io.github.akjo03.util.discord;
-	exports io.github.akjo03.util.discord.auth;
-	exports io.github.akjo03.util.discord.checks;
-	exports io.github.akjo03.util.discord.events;
-	exports io.github.akjo03.util.discord.status;
 	exports io.github.akjo03.util.logging.v2;
 	exports io.github.akjo03.util.net.requests;
 	exports io.github.akjo03.util.net.server;
@@ -49,6 +43,7 @@ module utils {
 	exports io.github.akjo03.util.math.unit.units.volume;
 	exports io.github.akjo03.util.math.unit.derived;
 	exports io.github.akjo03.util.math.unit.derived.dimension;
+	exports io.github.akjo03.util.math.vector;
 	exports io.github.akjo03.util.restriction;
 	exports io.github.akjo03.util.security;
 }

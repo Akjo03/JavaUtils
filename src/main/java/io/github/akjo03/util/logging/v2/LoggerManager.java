@@ -13,6 +13,16 @@ public final class LoggerManager {
 		throw new UnsupportedOperationException("LoggerManager class cannot be instantiated!");
 	}
 
+	public static @NotNull Logger getLoggerForEnclosingClass() {
+		Class<?> enclosingClass = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass().getEnclosingClass();
+
+		if (enclosingClass == null) {
+			return getLogger(StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass());
+		}
+
+		return getLogger(enclosingClass);
+	}
+
 	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	public static @NotNull Logger getLogger(Class<?> clazz) {
 		if (LOGGERS.stream().anyMatch(logger -> Objects.equals(logger.getClass(), clazz))) {
